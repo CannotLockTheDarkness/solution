@@ -1,0 +1,23 @@
+drop table ga_employee;
+create table ga_employee (
+	id_emp int,
+	surname varchar ,
+	experience int,
+	CONSTRAINT PK_ga_employee PRIMARY KEY (id_emp)
+);
+
+insert into ga_employee values(1, 'Ivanov' ,20);
+insert into ga_employee values(2, 'Kucherov' ,25);
+insert into ga_employee values(3, 'Sedorov', 45);
+insert into ga_employee values(4, 'Porocshenkoo', 45);
+insert into ga_employee values(5, 'Zelensky', 55);
+insert into ga_employee values(6, 'Putin', 56);
+insert into ga_employee values(7, 'Potanin', 57);
+insert into ga_employee values(8, 'strelkov', 58);
+insert into ga_employee values(9, 'Petrov', 59);
+insert into ga_employee values(10, 'First', 65);
+
+select surname from ga_employee 
+where experience in 
+(SELECT experience  FROM (SELECT experience FROM ga_employee ORDER BY experience DESC LIMIT 2)
+AS emp ORDER BY experience LIMIT 1);
